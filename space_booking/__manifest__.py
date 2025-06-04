@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'space_booking',
+    'name': 'Space Booking Management',
     'version': '1.0',
     'summary': '',
     'sequence': 10,
