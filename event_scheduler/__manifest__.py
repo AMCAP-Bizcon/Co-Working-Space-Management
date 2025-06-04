@@ -1,17 +1,17 @@
-# -*- coding: utf-8 -*-
+# -- coding: utf-8 --
 {
-    'name': 'Manage maintenance tickets',
+    'name': 'Event Scheduler',
     'version': '1.0',
-    'summary': ' ',
+    'summary': '',
     'sequence': 10,
     'description': """
     """,
     'category': 'Co working space',
-    'website': 'https://www.mkce.ac.in',
+    'website': 'https://www.skpec.in/',
     'depends': ['base'],
     'data': [
-        ],
-    'demo':[
+            ],
+    'demo': [
     ],
     'installable': True,
     'application': True,
