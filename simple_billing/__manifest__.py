@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'Manage simple_billing',
+    'name': 'Manage Simple Billing',
     'version': '1.0',
     'summary': '',
     'sequence': 10,
