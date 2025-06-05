@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'Manage member directory',
+    'name': 'Manage membership module',
     'version': '1.0',
     'summary': ' ',
     'sequence': 10,
