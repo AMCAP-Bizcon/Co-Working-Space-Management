@@ -91,6 +91,7 @@ Members
 ├── Members (list & form)
 ├── Companies (filtered where member_type = 'company')
 └── Staff Directory (filtered where member_type = 'staff')
+
     """,
     'category': 'Co working space',
     'website': 'https://www.mkce.ac.in',
