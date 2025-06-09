@@ -1,19 +1,16 @@
-# -*- coding: utf-8 -*-
+# -- coding: utf-8 --
 {
-    'name': 'Manage maintenance tickets',
+    'name': 'Maintenance Ticket',
     'version': '1.0',
-    'summary': ' ',
-    'sequence': 10,
-    'description': """
-    """,
-    'category': 'Co working space',
-    'website': 'https://www.mkce.ac.in',
+    'summary': 'Manage facility maintenance tickets',
+    'author': 'Your Name',
+    'category': 'Operations',
     'depends': ['base'],
     'data': [
-        ],
-    'demo':[
+        'security/ir.model.access.csv',
+        'data/maintenance_ticket_sequence.xml',
+        'views/maintenance_ticket_views.xml',
     ],
     'installable': True,
     'application': True,
-    'license': 'LGPL-3',
 }
