@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+
 {
     'name': 'Manage member directory',
     'version': '1.0',
@@ -78,7 +78,7 @@ To maintain a centralized directory of all individuals who interact with the co-
     DOB cannot be in the future (SQL constraint)
 
 📊 Views Required:
-
+https://github.com/AMCAP-Bizcon/Co-Working-Space-Management
     Form View: Complete member profile
 
     List View: Show member name, email, type, and status
@@ -97,6 +97,8 @@ Members
     'website': 'https://www.mkce.ac.in',
     'depends': ['base'],
     'data': [
+        'views/member_view.xml',
+        'security/ir.model.access.csv',
         ],
     'demo':[
     ],
