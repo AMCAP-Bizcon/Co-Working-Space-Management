@@ -5,11 +5,13 @@ from datetime import timedelta
 class MaintenanceTicket(models.Model):
     _name = 'maintenance.ticket'
     _description = 'Maintenance Ticket'
-    resolution_notes = fields.Text(string="Resolution Notes")
-    resolved_on = fields.Date(string="Resolved On")
+
     ticket_number = fields.Char(string='Ticket Number', required=True, readonly=True, copy=False, default='New')
     description = fields.Text(string="Description")
     reported_on = fields.Date(string="Reported On", default=fields.Date.today)
+    resolution_notes = fields.Text(string="Resolution Notes")
+    resolved_on = fields.Date(string="Resolved On")
+
     status = fields.Selection([
         ('new', 'New'),
         ('in_progress', 'In Progress'),
@@ -32,6 +34,7 @@ class MaintenanceTicket(models.Model):
 
     sla_deadline = fields.Date(string="SLA Deadline", compute="_compute_sla_deadline", store=True)
 
+    @api.model
     def create(self, vals):
         if vals.get('ticket_number', 'New') == 'New':
             vals['ticket_number'] = self.env['ir.sequence'].next_by_code('maintenance.ticket') or 'New'
@@ -49,4 +52,3 @@ class MaintenanceTicket(models.Model):
                     record.sla_deadline = record.reported_on + timedelta(days=1)
             else:
                 record.sla_deadline = False
-
