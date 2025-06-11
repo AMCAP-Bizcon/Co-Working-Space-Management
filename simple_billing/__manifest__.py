@@ -81,9 +81,9 @@ SQL Constraints:
 🧭 Menu Structure:
 
 Billing
-├── Invoices
-├── My Invoices (filtered by current user)
-└── Invoice Lines (optional submenu)
+ Invoices
+ My Invoices (filtered by current user)
+ Invoice Lines (optional submenu)
 
 
     """,

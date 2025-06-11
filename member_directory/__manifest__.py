@@ -88,9 +88,9 @@ https://github.com/AMCAP-Bizcon/Co-Working-Space-Management
 🧭 Menu Structure:
 
 Members
-├── Members (list & form)
-├── Companies (filtered where member_type = 'company')
-└── Staff Directory (filtered where member_type = 'staff')
+ Members (list & form)
+ Companies (filtered where member_type = 'company')
+ Staff Directory (filtered where member_type = 'staff')
 
     """,
     'category': 'Co working space',
