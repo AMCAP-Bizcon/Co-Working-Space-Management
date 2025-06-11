@@ -88,9 +88,9 @@ To maintain a centralized directory of all individuals who interact with the co-
 🧭 Menu Structure:
 
 Members
-├── Members (list & form)
-├── Companies (filtered where member_type = 'company')
-└── Staff Directory (filtered where member_type = 'staff')
+ Members (list & form)
+ Companies (filtered where member_type = 'company')
+ Staff Directory (filtered where member_type = 'staff')
 
     """,
     'category': 'Co working space',

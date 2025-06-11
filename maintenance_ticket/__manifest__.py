@@ -6,10 +6,10 @@
     'sequence': 10,
     'description': """
     Module 5: maintenance_ticket
-📌 Purpose:
+Purpose:
 To track facility-related issues like broken furniture, malfunctioning AC, or internet problems reported by members or staff.
 
-✅ Functional Requirements:
+Functional Requirements:
 1. Ticket Model
 Fields:
 
@@ -35,7 +35,7 @@ Resolved On (date)
 
 Status (Selection: New, In Progress, Resolved, Closed)
 
-🔄 Behavior:
+Behavior:
 @api.onchange:
 
 When priority is set to “High”, set SLA Deadline = Reported On + 1 day
@@ -48,31 +48,34 @@ Compute SLA Deadline from priority and reported date
 
 Compute resolution duration (Resolved On − Reported On) as a helper field (optional)
 
-🔒 Constraints:
+Constraints:
 Only one unresolved ticket per asset (if you link this to a future asset model)
 
 Resolved On cannot be before Reported On (SQL constraint)
 
-📊 Views Required:
+Views Required:
 Form View: Create/edit maintenance tickets
 
 List View: Ticket summary – issue, priority, status, deadline
 
 Kanban View: Group tickets by status or priority
 
-🧭 Menu Structure:
+Menu Structure:
 pgsql
 Copy
 Edit
 Maintenance
-├── Tickets
-├── My Tickets (filtered by current user)
-└── SLA Tracking (filtered: open & overdue)
-    """,
+ Tickets
+ My Tickets (filtered by current user)
+ SLA Tracking 
+""",
     'category': 'Co working space',
     'website': 'https://www.mkce.ac.in',
     'depends': ['base'],
     'data': [
+        'security/ir.model.access.csv',
+        'views/maintenance_ticket_views.xml',
+        'data/maintenance_ticket_sequence.xml',
         ],
     'demo':[
     ],

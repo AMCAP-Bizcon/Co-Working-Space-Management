@@ -80,9 +80,9 @@ SQL Constraints:
 
 ```
 Events
-├── Events
-├── Event Attendees
-└── My RSVPs (filtered by current user if applicable)
+ Events
+ Event Attendees
+ My RSVPs (filtered by current user if applicable)
 ```
 
 ---

@@ -81,8 +81,8 @@ Fields:
 🧭 Menu Structure:
 
 Membership
-├── Plans
-├── Member Subscriptions
+ Plans
+ Member Subscriptions
 """,
     'category': 'Co working space',
     'website': 'https://www.mkce.ac.in',

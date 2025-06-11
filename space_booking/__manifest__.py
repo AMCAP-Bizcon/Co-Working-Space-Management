@@ -83,9 +83,9 @@ Fields:
 🧭 Menu Structure:
 
 Bookings
-├── Resources
-├── All Bookings
-└── My Bookings (filtered by current user if applicable)
+ Resources
+ All Bookings
+ My Bookings (filtered by current user if applicable)
 
     """,
     'category': 'Co working space',
