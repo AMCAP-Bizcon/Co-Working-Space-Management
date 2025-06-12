@@ -61,7 +61,7 @@ SQL Constraints:
 
 * `@api.depends`:
 
-  * Compute `seats_left` from max\_attendees − confirmed attendee count
+  * Compute `seats_left` from max_attendees − confirmed attendee count
 
 ---
 
