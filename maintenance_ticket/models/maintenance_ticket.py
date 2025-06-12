@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 from datetime import timedelta
 
 class MaintenanceTicket(models.Model):
@@ -34,10 +34,16 @@ class MaintenanceTicket(models.Model):
 
     sla_deadline = fields.Date(string="SLA Deadline", compute="_compute_sla_deadline", store=True)
 
-    @api.model
+    @api.model_create_multi
     def create(self, vals):
-        if vals.get('ticket_number', 'New') == 'New':
-            vals['ticket_number'] = self.env['ir.sequence'].next_by_code('maintenance.ticket') or 'New'
+        if isinstance(vals, list):
+            for val in vals:
+                if val.get('ticket_number', _('New')) == _('New'):
+                    val['ticket_number'] = self.env['ir.sequence'].next_by_code('maintenance.ticket') or _('New')
+        else:
+            if vals.get('ticket_number', _('New')) == _('New'):
+                vals['ticket_number'] = self.env['ir.sequence'].next_by_code('maintenance.ticket') or _('New')
+
         return super(MaintenanceTicket, self).create(vals)
 
     @api.depends('reported_on', 'priority')

@@ -1,0 +1,67 @@
+<odoo>
+    <record id="view_form_feedback_review" model="ir.ui.view">
+        <field name="name">feedback.review.form</field>
+        <field name="model">feedback.review</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="member_id"/>
+                        <field name="feedback_type"/>
+                        <field name="related_record_id"/>
+                        <field name="rating"/>
+                        <field name="comment"/>
+                        <field name="submitted_on"/>
+                        <field name="staff_response"/>
+                        <field name="status"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_tree_feedback_review" model="ir.ui.view">
+        <field name="name">feedback.review.tree</field>
+        <field name="model">feedback.review</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="member_id"/>
+                <field name="feedback_type"/>
+                <field name="rating"/>
+                <field name="submitted_on"/>
+                <field name="status"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_kanban_feedback_review" model="ir.ui.view">
+        <field name="name">feedback.review.kanban</field>
+        <field name="model">feedback.review</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="status"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card">
+                            <strong><field name="member_id"/></strong><br/>
+                            <field name="feedback_type"/> - <field name="rating"/>
+                            <div><field name="comment"/></div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+      <record id="action_feedback_all" model="ir.actions.act_window">
+        <field name="name">All Feedback</field>
+        <field name="res_model">feedback.review</field>
+        <field name="view_mode">list,form,kanban</field>
+             </record>
+
+    <menuitem id="menu_feedback_root" name="Feedback"/>
+    <menuitem id="menu_all_feedback" name="All Feedback" parent="menu_feedback_root" action="action_feedback_all"/>
+    <menuitem id="menu_my_feedback" name="My Feedback" parent="menu_feedback_root"/>
+    <menuitem id="menu_low_ratings" name="Low Ratings" parent="menu_feedback_root"/>
+</odoo>
+
+
