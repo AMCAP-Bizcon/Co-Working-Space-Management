@@ -1,0 +1,86 @@
+<odoo>
+  <!-- Resource Form & List -->
+  <record id="view_resource_form" model="ir.ui.view">
+    <field name="name">space_booking.resource.form</field>
+    <field name="model">space_booking.resource</field>
+    <field name="arch" type="xml">
+      <form string="Resource">
+        <group>
+          <field name="name"/>
+          <field name="resource_type"/>
+          <field name="capacity"/>
+          <field name="location"/>
+          <field name="hourly_rate"/>
+        </group>
+      </form>
+    </field>
+  </record>
+
+  <record id="view_resource_tree" model="ir.ui.view">
+    <field name="name">space_booking.resource.tree</field>
+    <field name="model">space_booking.resource</field>
+    <field name="arch" type="xml">
+      <list string="Resource">
+        <field name="name"/>
+        <field name="resource_type"/>
+        <field name="capacity"/>
+        <field name="hourly_rate"/>
+      </list>
+    </field>
+  </record>
+
+  <!-- Booking Form & List -->
+  <record id="view_booking_form" model="ir.ui.view">
+    <field name="name">space_booking.booking.form</field>
+    <field name="model">space_booking.booking</field>
+    <field name="arch" type="xml">
+      <form string="Booking">
+        <group>
+          <field name="member_id"/>
+          <field name="resource_id"/>
+          <field name="start_datetime"/>
+          <field name="end_datetime"/>
+          <field name="purpose"/>
+          <field name="status"/>
+        </group>
+        <group>
+          <field name="duration_hours" readonly="1"/>
+          <field name="amount_total" readonly="1"/>
+        </group>
+      </form>
+    </field>
+  </record>
+
+  <record id="view_booking_tree" model="ir.ui.view">
+    <field name="name">space_booking.booking.tree</field>
+    <field name="model">space_booking.booking</field>
+    <field name="arch" type="xml">
+      <list string="Booking">
+        <field name="member_id"/>
+        <field name="resource_id"/>
+        <field name="start_datetime"/>
+        <field name="end_datetime"/>
+        <field name="status"/>
+        <field name="amount_total"/>
+      </list>
+    </field>
+  </record>
+    <!--Action-->
+    <record id="action_resources" model="ir.actions.act_window">
+    <field name="name">Resources</field>
+    <field name="res_model">space_booking.resource</field>
+    <field name="view_mode">list,form</field>
+  </record>
+
+  <record id="action_bookings" model="ir.actions.act_window">
+    <field name="name">Bookings</field>
+    <field name="res_model">space_booking.booking</field>
+    <field name="view_mode">list,form</field>
+  </record>
+
+   <!--menu-->
+  <menuitem id="menu_space_booking_root" name="Space Booking"/>
+  <menuitem id="menu_resource" name="Resources" parent="menu_space_booking_root" action="action_resources"/>
+  <menuitem id="menu_booking" name="Bookings" parent="menu_space_booking_root" action="action_bookings"/>
+
+</odoo>
