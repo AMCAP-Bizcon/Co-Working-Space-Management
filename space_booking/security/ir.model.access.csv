@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_resource,access.space_booking.resource,model_space_booking_resource,base.group_user,1,1,1,1
+access_booking,access.space_booking.booking,model_space_booking_booking,base.group_user,1,1,1,1
