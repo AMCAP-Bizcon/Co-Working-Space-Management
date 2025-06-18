@@ -1,3 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_simple_billing_invoice,simple.billing.invoice,model_simple_billing_invoice,base.group_user,1,1,1,1
-access_simple_billing_line,simple.billing.line,model_simple_billing_line,base.group_user,1,1,1,1
+access_invoice_user,simple.billing.invoice,model_simple_billing_invoice,base.group_user,1,1,1,1
+access_invoice_line_user,simple.billing.invoice.line,model_simple_billing_invoice_line,base.group_user,1,1,1,1
