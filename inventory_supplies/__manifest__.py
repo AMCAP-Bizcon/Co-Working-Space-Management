@@ -99,6 +99,9 @@ Supplies
     'website': 'https://www.mkce.ac.in',
     'depends': ['base'],
     'data': [
+        'views/inventory.xml',
+        'security/ir.model.access.csv',
+        'views/supply_movement_views.xml'
         ],
     'demo':[
     ],
