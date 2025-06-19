@@ -5,10 +5,10 @@
     'summary': ' ',
     'sequence': 10,
     'description': """Module 10: asset_tracker
-📌 Purpose:
+Purpose:
 
 To track physical assets (chairs, monitors, routers, etc.) and their current assignments to members or areas.
-✅ Functional Requirements:
+ Functional Requirements:
 1. Asset Model
 
 Fields:
@@ -37,7 +37,7 @@ SQL Constraints:
 
     Purchase Date cannot be in the future
 
-🔄 Behavior:
+ Behavior:
 
     @api.onchange:
 
@@ -58,7 +58,7 @@ SQL Constraints:
 
     Kanban View: Group assets by state (In Use, Available, Maintenance, Retired)
 
-🧭 Menu Structure:
+ Menu Structure:
 
 Assets
 ├── All Assets
@@ -69,8 +69,9 @@ Assets
     """,
     'category': 'Co working space',
     'website': 'https://www.mkce.ac.in',
-    'depends': ['base'],
-    'data': [
+    'depends': ['base','member_directory'],
+    'data': ['views/asset_view.xml',
+        'security/ir.model.access.csv'
         ],
     'demo':[
     ],
