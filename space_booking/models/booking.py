@@ -14,7 +14,7 @@ class BookableResource(models.Model):
         ('booth', 'Booth')
     ], required=True)
     capacity = fields.Integer(required=True)
-    location = fields.Char()
+    floor_no = fields.Char()
     hourly_rate = fields.Float(string='Hourly Rate', required=True)
 
     _sql_constraints = [
@@ -27,7 +27,7 @@ class ResourceBooking(models.Model):
     _name = 'space_booking.booking'
     _description = 'Booking'
 
-    member_id = fields.Many2one('member_directory.member', string='Member', required=True)
+    member_id = fields.Many2one('member.directory', string='Member', required=True)
     resource_id = fields.Many2one('space_booking.resource', string='Resource', required=True)
     start_datetime = fields.Datetime(required=True)
     end_datetime = fields.Datetime(required=True)

@@ -9,21 +9,22 @@
           <field name="name"/>
           <field name="resource_type"/>
           <field name="capacity"/>
-          <field name="location"/>
+          <field name="floor_no"/>
           <field name="hourly_rate"/>
         </group>
       </form>
     </field>
   </record>
 
-  <record id="view_resource_tree" model="ir.ui.view">
-    <field name="name">space_booking.resource.tree</field>
+  <record id="view_resource_list" model="ir.ui.view">
+    <field name="name">space_booking.resource.list</field>
     <field name="model">space_booking.resource</field>
     <field name="arch" type="xml">
       <list string="Resource">
         <field name="name"/>
         <field name="resource_type"/>
         <field name="capacity"/>
+        <field name="floor_no"/>
         <field name="hourly_rate"/>
       </list>
     </field>
@@ -51,8 +52,8 @@
     </field>
   </record>
 
-  <record id="view_booking_tree" model="ir.ui.view">
-    <field name="name">space_booking.booking.tree</field>
+  <record id="view_booking_list" model="ir.ui.view">
+    <field name="name">space_booking.booking.list</field>
     <field name="model">space_booking.booking</field>
     <field name="arch" type="xml">
       <list string="Booking">
