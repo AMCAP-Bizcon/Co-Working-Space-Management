@@ -4,7 +4,7 @@ from odoo.exceptions import ValidationError
 from datetime import timedelta
 
 class BookableResource(models.Model):
-    _name = 'space_booking.resource'
+    _name = 'space.booking.resource'
     _description = 'Bookable Resource'
 
     name = fields.Char(required=True)
@@ -16,6 +16,7 @@ class BookableResource(models.Model):
     capacity = fields.Integer(required=True)
     floor_no = fields.Char()
     hourly_rate = fields.Float(string='Hourly Rate', required=True)
+    active = fields.Boolean(string="Active", default=True)
 
     _sql_constraints = [
         ('name_unique', 'unique(name)', 'Resource name must be unique'),
@@ -24,11 +25,11 @@ class BookableResource(models.Model):
 
 
 class ResourceBooking(models.Model):
-    _name = 'space_booking.booking'
+    _name = 'space.booking.booking'
     _description = 'Booking'
 
     member_id = fields.Many2one('member.directory', string='Member', required=True)
-    resource_id = fields.Many2one('space_booking.resource', string='Resource', required=True)
+    resource_id = fields.Many2one('space.booking.resource', string='Resource', required=True)
     start_datetime = fields.Datetime(required=True)
     end_datetime = fields.Datetime(required=True)
     purpose = fields.Char()
