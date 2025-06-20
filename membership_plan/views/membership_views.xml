@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- ===========================
+         Membership Plan Views
+    ============================ -->
+
+    <record id="view_membership_plan_form" model="ir.ui.view">
+        <field name="name">membership.plan.form</field>
+        <field name="model">membership.plan</field>
+        <field name="arch" type="xml">
+            <form string="Membership Plan">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="duration"/>
+                        <field name="price"/>
+                        <field name="active"/>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_membership_plan_list" model="ir.ui.view">
+        <field name="name">membership.plan.list</field>
+        <field name="model">membership.plan</field>
+        <field name="arch" type="xml">
+            <list string="Membership Plans">
+                <field name="name"/>
+                <field name="duration"/>
+                <field name="price"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_membership_plan" model="ir.actions.act_window">
+        <field name="name">Membership Plans</field>
+        <field name="res_model">membership.plan</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- ===============================
+         Member Subscription Views
+    ================================ -->
+
+    <record id="view_member_subscription_form" model="ir.ui.view">
+        <field name="name">member.subscription.form</field>
+        <field name="model">member.subscription</field>
+        <field name="arch" type="xml">
+            <form string="Member Subscription">
+                <sheet>
+                    <group>
+                        <field name="member_id"/>
+                        <field name="plan_id"/>
+                        <field name="start_date"/>
+                        <field name="end_date" readonly="1"/>
+                        <field name="price" />
+                        <field name="status" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_member_subscription_list" model="ir.ui.view">
+        <field name="name">member.subscription.list</field>
+        <field name="model">member.subscription</field>
+        <field name="arch" type="xml">
+            <list string="Member Subscriptions">
+                <field name="member_id"/>
+                <field name="plan_id"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="status"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_member_subscription" model="ir.actions.act_window">
+        <field name="name">Member Subscriptions</field>
+        <field name="res_model">member.subscription</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- ===========================
+         Menu Items
+    ============================ -->
+
+    <menuitem id="menu_membership_root" name="Membership" sequence="10"/>
+    
+    <menuitem id="menu_membership_plan"
+              name="Plans"
+              parent="menu_membership_root"
+              action="action_membership_plan"
+              sequence="1"/>
+    
+    <menuitem id="menu_member_subscription"
+              name="Member Subscriptions"
+              parent="menu_membership_root"
+              action="action_member_subscription"
+              sequence="2"/>
+
+</odoo>
