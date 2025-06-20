@@ -1,0 +1,118 @@
+<odoo>
+    <record id="view_form_simple_invoice" model="ir.ui.view">
+        <field name="name">simple.billing.invoice.form</field>
+        <field name="model">simple.billing.invoice</field>
+        <field name="arch" type="xml">
+            <form string="Invoice">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="customer_id"/>
+                        <field name="invoice_date"/>
+                        <field name="status"/>
+                        <field name="notes"/>
+                    </group>
+                    <notebook>
+                        <page string="Invoice Lines">
+                            <field name="line_ids">
+                                <list editable="bottom">
+                                    <field name="description"/>
+                                    <field name="related_record_id"/>
+                                    <field name="quantity"/>
+                                    <field name="unit_price"/>
+                                    <field name="subtotal" readonly="1"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                    <footer>
+                        <label string="Total:" for="total_amount"/>
+                        <div>
+                            <field name="total_amount" readonly="1"/>
+                        </div>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_list_simple_invoice" model="ir.ui.view">
+        <field name="name">simple.billing.invoice.list</field>
+        <field name="model">simple.billing.invoice</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="customer_id"/>
+                <field name="invoice_date"/>
+                <field name="total_amount"/>
+                <field name="status"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_kanban_simple_invoice" model="ir.ui.view">
+        <field name="name">simple.billing.invoice.kanban</field>
+        <field name="model">simple.billing.invoice</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/>
+                <field name="customer_id"/>
+                <field name="total_amount"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div>
+                            <strong><field name="name"/></strong><br/>
+                            <field name="customer_id"/><br/>
+                            <field name="total_amount"/>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_list_invoice_line" model="ir.ui.view">
+        <field name="name">simple.billing.invoice.line.list</field>
+        <field name="model">simple.billing.invoice.line</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="invoice_id"/>
+                <field name="description"/>
+                <field name="related_record_id"/>
+                <field name="quantity"/>
+                <field name="unit_price"/>
+                <field name="subtotal"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_simple_invoice" model="ir.actions.act_window">
+        <field name="name">Invoices</field>
+        <field name="res_model">simple.billing.invoice</field>
+        <field name="view_mode">list,form,kanban</field>
+    </record>
+
+    <record id="action_my_simple_invoice" model="ir.actions.act_window">
+        <field name="name">My Invoices</field>
+        <field name="res_model">simple.billing.invoice</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('customer_id.user_id','=',uid)]</field>
+    </record>
+
+    <record id="action_invoice_lines" model="ir.actions.act_window">
+        <field name="name">Invoice Lines</field>
+        <field name="res_model">simple.billing.invoice.line</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <menuitem id="menu_simple_billing_root" name="Billing"/>
+
+    <menuitem id="menu_invoices" name="Invoices" parent="menu_simple_billing_root"
+              action="action_simple_invoice"/>
+
+    <menuitem id="menu_my_invoices" name="My Invoices" parent="menu_simple_billing_root"
+              action="action_my_simple_invoice"/>
+
+    <menuitem id="menu_invoice_lines" name="Invoice Lines" parent="menu_simple_billing_root"
+              action="action_invoice_lines"/>
+</odoo>

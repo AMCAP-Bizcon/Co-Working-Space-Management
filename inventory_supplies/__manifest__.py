@@ -87,9 +87,9 @@ SQL Constraints:
 
 ```
 Supplies
-├── Items
-├── Stock Movements
-└── Low Stock Alerts (filtered: reorder_needed = True)
+ Items
+ Stock Movements
+ Low Stock Alerts (filtered: reorder_needed = True)
 ```
 
 ---

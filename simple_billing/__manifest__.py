@@ -80,17 +80,17 @@ SQL Constraints:
 
 🧭 Menu Structure:
 
-Billing
-├── Invoices
-├── My Invoices (filtered by current user)
-└── Invoice Lines (optional submenu)
+Simple Billing
+ Invoices
+ My Invoices (filtered by current user)
+ Invoice Lines (optional submenu)
 
 
     """,
     'category': 'Co working space',
     'website': 'https://www.gtec.ac.in',
-    'depends': ['base'],
-    'data': [
+    'depends': ['base','member_directory'],
+    'data': ['views/billing_invoice_views.xml','security/ir.model.access.csv','data/billing_invoice_sequence.xml'
     ],
     'demo': [
     ],

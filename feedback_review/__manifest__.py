@@ -63,9 +63,9 @@ SQL Constraints:
 
 ```
 Feedback
-├── All Feedback
-├── My Feedback (filtered by current user)
-└── Low Ratings (filtered where rating ≤ 2)
+ All Feedback
+ My Feedback (filtered by current user)
+ Low Ratings (filtered where rating ≤ 2)
 ```
 
 ---
