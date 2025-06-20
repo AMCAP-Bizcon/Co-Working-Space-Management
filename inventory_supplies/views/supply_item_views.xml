@@ -1,0 +1,49 @@
+<odoo>
+    <record id="view_form_supply_item" model="ir.ui.view">
+        <field name="name">inventory.supplies.item.form</field>
+        <field name="model">inventory.supplies.item</field>
+        <field name="arch" type="xml">
+            <form string="Supply Item">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="category"/>
+                        <field name="uom"/>
+                        <field name="opening_stock"/>
+                        <field name="total_purchased"/>
+                        <field name="total_consumed"/>
+                        <field name="current_stock" readonly="1"/>
+                        <field name="reorder_qty"/>
+                        <field name="reorder_needed" readonly="1"/>
+                        <field name="active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_list_supply_item" model="ir.ui.view">
+        <field name="name">inventory.supplies.item.list</field>
+        <field name="model">inventory.supplies.item</field>
+        <field name="arch" type="xml">
+            <list string="Supply Items">
+                <field name="name"/>
+                <field name="category"/>
+                <field name="uom"/>
+                <field name="current_stock"/>
+                <field name="reorder_needed"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_supply_item" model="ir.actions.act_window">
+        <field name="name">Supply Items</field>
+        <field name="res_model">inventory.supplies.item</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_inventory_root" name="Inventory" sequence="10"/>
+    <menuitem id="menu_inventory_items" name="Supply Items"
+              parent="menu_inventory_root" action="action_supply_item" sequence="20"/>
+</odoo>
