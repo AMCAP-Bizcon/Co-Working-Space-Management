@@ -1,7 +1,7 @@
-
 from odoo import models, fields, api, _
 from datetime import date
 from odoo.exceptions import ValidationError
+
 
 class MemberDirectory(models.Model):
     _name = 'member.directory'
@@ -26,9 +26,18 @@ class MemberDirectory(models.Model):
         ('staff', 'Staff')
     ], string='Member Type', required=True)
 
-    company_name = fields.Char(string='Company Name')
-    gst_number = fields.Char(string='GST Number')
-    contact_person_id = fields.Many2one('member.directory', string='Contact Person')
+    # Company-Specific Fields
+    company_name = fields.Char(string='Company Name', groups="member_directory.group_member_company")
+    gst_number = fields.Char(string='GST Number', groups="member_directory.group_member_company")
+    contact_person_id = fields.Many2one('res.partner', string='Contact Person', groups="member_directory.group_member_company")
+    company_description = fields.Text(string="Company Description", groups="member_directory.group_member_company")
+    company_website = fields.Char(string="Company Website", groups="member_directory.group_member_company")
+
+    # Staff-Specific Fields
+    staff_department = fields.Char(string='Department', groups="member_directory.group_member_staff")
+    staff_job_title = fields.Char(string='Job Title', groups="member_directory.group_member_staff")
+    staff_employee_id = fields.Char(string="Employee ID", groups="member_directory.group_member_staff")
+    staff_hire_date = fields.Date(string="Hire Date", groups="member_directory.group_member_staff")
 
     membership_status = fields.Selection([
         ('active', 'Active'),
@@ -38,6 +47,7 @@ class MemberDirectory(models.Model):
 
     age = fields.Integer(string='Age', compute='_compute_age', store=True)
     member_reference = fields.Char(string='Member Reference', readonly=True, copy=False, default=lambda self: _('New'))
+
 
     @api.model_create_multi
     def create(self, vals):
@@ -67,12 +77,22 @@ class MemberDirectory(models.Model):
             # This needs to be linked to a subscription model from membership_plan
             rec.membership_status = 'none'
 
+
     @api.onchange('member_type')
     def _onchange_member_type(self):
         if self.member_type != 'company':
             self.company_name = False
             self.gst_number = False
             self.contact_person_id = False
+            self.company_description = False
+            self.company_website = False
+
+        if self.member_type != 'staff':
+            self.staff_department = False
+            self.staff_job_title = False
+            self.staff_employee_id = False
+            self.staff_hire_date = False
+
 
     @api.constrains('email')
     def _check_unique_email(self):
@@ -85,3 +105,4 @@ class MemberDirectory(models.Model):
         for rec in self:
             if rec.date_of_birth and rec.date_of_birth > date.today():
                 raise ValidationError('Date of Birth cannot be in the future.')
+
