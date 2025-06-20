@@ -88,6 +88,8 @@ Membership
     'website': 'https://www.mkce.ac.in',
     'depends': ['base'],
     'data': [
+        'views/membership_views.xml',
+        'security/ir.model.access.csv',
         ],
     'demo':[
     ],

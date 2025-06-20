@@ -1,78 +1,119 @@
 <odoo>
-  <record id="view_form_member_directory" model="ir.ui.view">
-    <field name="name">member.directory.form</field>
-    <field name="model">member.directory</field>
-    <field name="arch" type="xml">
-      <form string="Member">
-        <sheet>
-         <group>
-          <group>
-            <field name="member_reference" readonly="1"/>
-            <field name="full_name"/>
-            <field name="email"/>
-            <field name="phone"/>
-            <field name="date_of_birth"/>
-            <field name="age" readonly="1"/>
-            <field name="gender"/>
-            <field name="photo"/>
-            <field name="joining_date"/>
-            <field name="member_type"/>
-            <field name="membership_status" readonly="1"/>
-          </group>
-          <group ivisible="member_type != 'company'">
-            <field name="company_name"/>
-            <field name="gst_number"/>
-            <field name="contact_person_id"/>
-          </group>
-          </group>
-        </sheet>
-      </form>
-    </field>
-  </record>
+    <data>
+        <record id="view_form_member_directory" model="ir.ui.view">
+            <field name="name">member.directory.form</field>
+            <field name="model">member.directory</field>
+            <field name="arch" type="xml">
+                <form string="Member">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="member_reference" readonly="1"/>
+                                <field name="full_name"/>
+                                <field name="email"/>
+                                <field name="phone"/>
+                                <field name="date_of_birth"/>
+                                <field name="age" readonly="1"/>
+                                <field name="gender"/>
+                                <field name="photo" widget="image" class="oe_avatar"/>
+                                <field name="joining_date"/>
+                                <field name="member_type"/>
+                                <field name="membership_status" readonly="1"/>
+                            </group>
+                        </group>
 
-  <record id="view_tree_member_directory" model="ir.ui.view">
-    <field name="name">member.directory.tree</field>
-    <field name="model">member.directory</field>
-    <field name="arch" type="xml">
-      <list>
-        <field name="full_name"/>
-        <field name="email"/>
-        <field name="member_type"/>
-        <field name="membership_status"/>
-      </list>
-    </field>
-  </record>
+                        <group invisible="member_type != 'company'">
+                            <field name="company_name" required="member_type == 'company'"/>
+                            <field name="gst_number"/>
+                            <field name="contact_person_id"/>
+                            <field name="company_description"/>
+                            <field name="company_website"/>
+                        </group>
 
-  <record id="view_kanban_member_directory" model="ir.ui.view">
-    <field name="name">member.directory.kanban</field>
-    <field name="model">member.directory</field>
-    <field name="arch" type="xml">
-      <kanban>
-        <field name="photo"/>
-        <templates>
-          <t t-name="kanban-box">
-            <div class="oe_kanban_global_click">
-              <img t-att-src="kanban_image('member.directory', 'photo', record.id.value)" class="oe_kanban_avatar" alt="member_photo"/>
-              <div><strong><field name="full_name"/></strong></div>
-              <div><field name="member_type"/></div>
-              <div><field name="membership_status"/></div>
-            </div>
-          </t>
-        </templates>
-      </kanban>
-    </field>
-  </record>
+                        <group invisible="member_type != 'staff'">
+                            <field name="staff_department"/>
+                            <field name="staff_job_title"/>
+                            <field name="staff_employee_id"/>
+                            <field name="staff_hire_date"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
 
-  <record id="action_member_directory" model="ir.actions.act_window">
-    <field name="name">Members</field>
-    <field name="res_model">member.directory</field>
-    <field name="view_mode">list,form,kanban</field>
-  </record>
 
-  <menuitem id="menu_member_root" name="Members"/>
-  <menuitem id="menu_member_all" name="Members" parent="menu_member_root" action="action_member_directory"/>
-<!--  <menuitem id="menu_member_companies" name="Companies" parent="menu_member_root"-->
-<!--            action="action_member_directory" domain="[('member_type','=','company')]"/>-->
-<!--  <menuitem id="menu_member_staff" name="Staff Directory" parent="menu_member_root"-->
-<!--            action="action_member_directory" domain="[('member_type','=','staff')]"/>-->
+        <record id="view_list_member_directory" model="ir.ui.view">
+            <field name="name">member.directory.list</field>
+            <field name="model">member.directory</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="full_name"/>
+                    <field name="email"/>
+                    <field name="member_type"/>
+                    <field name="membership_status"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Kanban View -->
+        <record id="view_kanban_member_directory" model="ir.ui.view">
+            <field name="name">member.directory.kanban</field>
+            <field name="model">member.directory</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="member_type">
+                    <field name="photo"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <img t-att-src="kanban_image('member.directory', 'photo', record.id.value)"
+                                     class="oe_kanban_avatar" alt="member_photo"/>
+                                <div><strong>
+                                    <field name="full_name"/>
+                                </strong></div>
+                                <div>
+                                    <field name="member_type"/>
+                                </div>
+                                <div>
+                                    <field name="membership_status"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- Action Window -->
+        <record id="action_member_directory" model="ir.actions.act_window">
+            <field name="name">Members</field>
+            <field name="res_model">member.directory</field>
+            <field name="view_mode">list,form,kanban</field>
+        </record>
+
+        <record id="action_member_companies" model="ir.actions.act_window">
+            <field name="name">Companies</field>
+            <field name="res_model">member.directory</field>
+            <field name="view_mode">list,form,kanban</field>
+            <field name="domain">[('member_type', '=', 'company')]</field>
+            <field name="context">{'default_member_type':'company'}</field>
+        </record>
+
+        <record id="action_member_staff" model="ir.actions.act_window">
+            <field name="name">Staff</field>
+            <field name="res_model">member.directory</field>
+            <field name="view_mode">list,form,kanban</field>
+            <field name="domain">[('member_type', '=', 'staff')]</field>
+            <field name="context">{'default_member_type':'staff'}</field>
+        </record>
+
+        <!-- Menu Items -->
+        <menuitem id="menu_member_root" name="Members"/>
+        <menuitem id="menu_member_all" name="All Members" parent="menu_member_root"
+                  action="action_member_directory"/>
+
+        <menuitem id="menu_member_companies" name="Companies" parent="menu_member_root"
+                  action="action_member_companies"/>
+        <menuitem id="menu_member_staff" name="Staff Directory" parent="menu_member_root"
+                  action="action_member_staff"/>
+    </data>
 </odoo>
