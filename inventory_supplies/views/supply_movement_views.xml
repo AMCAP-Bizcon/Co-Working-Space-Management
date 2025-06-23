@@ -1,0 +1,45 @@
+<odoo>
+    <record id="view_form_supply_movement" model="ir.ui.view">
+        <field name="name">inventory.supplies.movement.form</field>
+        <field name="model">inventory.supplies.movement</field>
+        <field name="arch" type="xml">
+            <form string="Supply Movement">
+                <sheet>
+                    <group>
+                        <field name="item_id"/>
+                        <field name="movement_type"/>
+                        <field name="quantity"/>
+                        <field name="date"/>
+                        <field name="note"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_list_supply_movement" model="ir.ui.view">
+        <field name="name">inventory.supplies.movement.list</field>
+        <field name="model">inventory.supplies.movement</field>
+        <field name="arch" type="xml">
+            <list string="Supply Movements">
+                <field name="item_id"/>
+                <field name="movement_type"/>
+                <field name="quantity"/>
+                <field name="date"/>
+                <field name="note"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_supply_movement" model="ir.actions.act_window">
+        <field name="name">Supply Movements</field>
+        <field name="res_model">inventory.supplies.movement</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_inventory_movements"
+              name="Supply Movements"
+              parent="menu_inventory_root"
+              action="action_supply_movement"
+              sequence="30"/>
+</odoo>
