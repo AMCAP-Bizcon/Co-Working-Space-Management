@@ -70,7 +70,7 @@ Assets
     'category': 'Co working space',
     'website': 'https://www.mkce.ac.in',
     'depends': ['base','member_directory'],
-    'data': ['views/asset_view.xml',
+    'data': ['views/asset_views.xml',
         'security/ir.model.access.csv'
         ],
     'demo':[
